@@ -29,3 +29,11 @@ Route::get('/', function () {
 Route::group(['middleware' => ['web']], function () {
     //
 });
+Route::group(
+    ['prefix' => 'api'],
+    function() {
+        Route::get('/', 'HomeController@index');
+        Route::resource('students', 'StudentsController');
+        Route::get('students/{id?}/projects', 'ProjectsController@showByStudentId');
+        Route::resource('projects', 'ProjectsController');
+});
