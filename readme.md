@@ -1,27 +1,27 @@
-# Laravel PHP Framework
+# Angular ![alt text](http://www.toonpool.com/user/7755/thumbs/caring_hand_logo_77484.jpg) Laravel
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+A web page for displaying information about students,
+companies and projects made from the students during the courses at
+![alt text](http://trainingcamp.ittalents.bg/assets/images/it-talents-logo.png)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
-
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
-
-## Official Documentation
-
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+##URL's
+1. http://itgottalent.herokuapp.com/students
+    displaying info about the students
+    query params -> page, name(like), course, season
+    RESTfull -> get
+2. http://itgottalent.herokuapp.com/students/1
+    personal details about a student with id = 1
+    RESTfull -> get
+3. http://itgottalent.herokuapp.com/students/{id}/projects
+    projects of student with id = 1
+    RESTfull -> get
+4. http://itgottalent.herokuapp.com/projects
+    displaying info about the projects
+    query params -> page
+    RESTfull -> get, post
+5. http://itgottalent.herokuapp.com/projects/1
+    displaying info about project with id = 1
+    RESTfull -> get, update, delete
+6. http://itgottalent.herokuapp.com/user/1
+    displaying and editing personal information about user with id = 1
+    RESTfull -> get, post, update, delete

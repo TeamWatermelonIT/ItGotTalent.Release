@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\User;
 use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Response;
 
 class StudentsController extends Controller
 {
@@ -15,7 +18,30 @@ class StudentsController extends Controller
      */
     public function index()
     {
-        echo 'Here are all the sutdents';
+        $name = Input::get('name');
+        $course = Input::get('course');
+        $season = Input::get('season');
+
+        $query = DB::table('users');
+        if($name != null){
+            $query->where('name', 'LIKE', "%$name%");
+        }
+        if($course != null){
+            $query->where('course', '=', $course);
+        }
+        if($season != null){
+            $query->where('season', '=', $season);
+        }
+
+        $users = $query->paginate();
+
+        $response = [];
+
+        foreach($users as $user){
+            $response[] = $this->getUserResponse($user);
+        }
+
+        return Response::json($response);
     }
 
     /**
@@ -47,7 +73,10 @@ class StudentsController extends Controller
      */
     public function show($id)
     {
-        echo 'Student with id ' . $id;
+        $user = User::where('id', $id)->get()->first();
+        $response = $this->getUserResponse($user);
+
+        return Response::json($response);
     }
 
     /**
@@ -82,5 +111,20 @@ class StudentsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function getUserResponse($user)
+    {
+        $response = [
+            'name' => $user->name,
+            'course' => $user->course,
+            'season' => $user->season,
+            'email' => $user->email,
+            'gender' => $user->gender,
+            'dateOfBirth' => $user->dateOfBirth,
+            'photo' => $user->photoUrl
+        ];
+
+        return $response;
     }
 }

@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -26,14 +22,30 @@ Route::get('/', function () {
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
-});
+Route::get('/', 'HomeController@index');
+
+Route::group(
+    ['middleware' => 'web'],
+    function () {
+        Route::auth();
+        Route::group(
+            ['prefix' => 'api'],
+            function () {
+                Route::get('projects/{id}', 'ProjectsController@show');
+                Route::post('projects', 'ProjectsController@store');
+            }
+        );
+    }
+);
 Route::group(
     ['prefix' => 'api'],
-    function() {
+    function () {
         Route::get('/', 'HomeController@index');
-        Route::resource('students', 'StudentsController');
-        Route::get('students/{id?}/projects', 'ProjectsController@showByStudentId');
-        Route::resource('projects', 'ProjectsController');
-});
+        Route::get('user/{id}', 'StudentsController@index');
+        Route::get('students', 'StudentsController@index');
+        Route::get('students/{id}', 'StudentsController@show');
+        Route::get('students/{id}/projects', 'ProjectsController@showByStudentId');
+        Route::get('projects', 'ProjectsController@index');
+        Route::get('projects/{id}', 'ProjectsController@show');
+    }
+);

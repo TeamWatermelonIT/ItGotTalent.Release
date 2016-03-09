@@ -47,6 +47,7 @@ class ProjectsController extends Controller
      */
     public function show($id)
     {
+        $this->middleware('auth');
         echo 'Here are all the projects with id = ' . $id;
     }
 
