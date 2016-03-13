@@ -1,13 +1,13 @@
 # Angular ![alt text](http://www.toonpool.com/user/7755/thumbs/caring_hand_logo_77484.jpg) Laravel
 
-A web page for displaying information about students,
-companies and projects made from the students during the courses at
+###A web page for displaying information about students,
+###companies and projects made from the students during the courses at
 ![alt text](http://trainingcamp.ittalents.bg/assets/images/it-talents-logo.png)
 
 ##URL's
 1. http://itgottalent.herokuapp.com/students
     displaying info about the students
-    query params -> page, name(like), course, season
+    query params -> page, name(like), course, season, orderBy, order
     RESTfull -> get
 2. http://itgottalent.herokuapp.com/students/1
     personal details about a student with id = 1

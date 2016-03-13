@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
+use App\Project;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Request;
 
 class ProjectsController extends Controller
 {
@@ -15,7 +17,15 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        echo 'Here are all the projects';
+        $name = Input::get('name');
+
+        $query = Project::with('photos', 'users');
+        if($name != null){
+            $query->where('name', 'LIKE', "%$name%");
+        }
+        $projects = $query->paginate(10);
+
+        return Response::json($projects->all());
     }
 
     /**
@@ -47,19 +57,14 @@ class ProjectsController extends Controller
      */
     public function show($id)
     {
-        $this->middleware('auth');
-        echo 'Here are all the projects with id = ' . $id;
-    }
+        $project = Project::where('id', $id)->get()->first();
+        if (!$project) {
+            return Response::json([
+                'message' => 'Project not found',
+            ], 404);
+        }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function showByStudentId($id)
-    {
-        echo 'Here are all the projects with student id = ' . $id;
+        return Response::json($project);
     }
 
     /**
