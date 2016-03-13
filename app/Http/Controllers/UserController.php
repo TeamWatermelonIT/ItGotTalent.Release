@@ -2,30 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Project;
+use App\User;
 use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Request;
 
-class ProjectsController extends Controller
+class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function __construct()
     {
-        $name = Input::get('name');
 
-        $query = Project::with('photos', 'users');
-        if($name != null){
-            $query->where('name', 'LIKE', "%$name%");
-        }
-        $projects = $query->paginate(10);
-
-        return Response::json($projects->all());
     }
 
     /**
@@ -57,14 +45,9 @@ class ProjectsController extends Controller
      */
     public function show($id)
     {
-        $project = Project::where('id', $id)->get()->first();
-        if (!$project) {
-            return Response::json([
-                'message' => 'Project not found',
-            ], 404);
-        }
+        $user = User::where('id', $id)->get()->first();
 
-        return Response::json($project);
+        return Response::json($user);
     }
 
     /**

@@ -22,12 +22,13 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', function() {
+    return view('index');
+});
 
 Route::group(
     ['middleware' => 'web'],
     function () {
-        Route::auth();
         Route::group(
             ['prefix' => 'api'],
             function () {

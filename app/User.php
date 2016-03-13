@@ -26,6 +26,7 @@ class User extends Authenticatable
 
     public function projects()
     {
-        return $this->belongsToMany('App\Project');
+        return $this->belongsToMany('App\Project', 'user_project');
     }
+    public $visible = ['id', 'name', 'email', 'course', 'season', 'grade', 'gender', 'dateOfBirth', 'photoUrl', 'projects'];
 }
