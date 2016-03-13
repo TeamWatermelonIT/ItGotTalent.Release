@@ -1,0 +1,29 @@
+body{
+	background-image: url(../img/code-wallpaper.jpg);
+}
+.container-fluid{
+	background-color:rgba(88,88,88,0.1);
+}
+
+.box{
+	margin: 50px 0px;
+}
+
+
+.col-sm-3 {
+    border: 1px solid #CCC;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+
+.col-sm-3 h4 {
+    color: #CCC;
+}
+
+.img-responsive {
+    margin-top: 10px;
+}
+
+footer p{
+	margin-bottom: 30px;
+}
