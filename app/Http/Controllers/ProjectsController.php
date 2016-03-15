@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Project;
-use App\Http\Requests;
+use App\Photo;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
 {
@@ -29,16 +29,6 @@ class ProjectsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -46,7 +36,26 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $project = Project::create(array(
+            'name' => $request->input('name'),
+            'githubUrl' => $request->input('githubUrl'),
+            'description' => $request->input('description')
+        ))->get()->first();
+
+        $photos = $request->input('photos');
+        foreach($photos as $photoUrl){
+            self::addPhotoToProject($project->id, $photoUrl);
+        }
+
+        $users = $request->input('users');
+        foreach($users as $userEmail){
+            self::addUserToProject($userEmail, $project->id);
+        }
+
+        return Response::json([
+            'message' => 'Project created',
+            'projectId' => $project->id,
+        ], 200);
     }
 
     /**
@@ -57,7 +66,7 @@ class ProjectsController extends Controller
      */
     public function show($id)
     {
-        $project = Project::where('id', $id)->get()->first();
+        $project = Project::with('photos', 'users')->where('id', $id)->get()->first();
         if (!$project) {
             return Response::json([
                 'message' => 'Project not found',
@@ -65,17 +74,6 @@ class ProjectsController extends Controller
         }
 
         return Response::json($project);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -87,7 +85,36 @@ class ProjectsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $project = Project::find($id);
+        if (!$project) {
+            return Response::json([
+                'message' => 'Project not found',
+            ], 404);
+        }
+        if($request->input('name')){
+            $project->name = $request->input('name');
+        }
+        if($request->input('githubUrl')){
+            $project->githubUrl = $request->input('githubUrl');
+        }
+        if($request->input('description')){
+            $project->description = $request->input('githubUrl');
+        }
+
+        $photos = $request->input('photos');
+        foreach($photos as $photoUrl){
+            self::addPhotoToProject($project->id, $photoUrl);
+        }
+
+        $users = $request->input('users');
+        foreach($users as $userEmail){
+            self::addUserToProject($userEmail, $project->id);
+        }
+
+        return Response::json([
+            'message' => 'Project updated',
+            'projectId' => $project->id,
+        ], 200);
     }
 
     /**
@@ -98,6 +125,34 @@ class ProjectsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $project = Project::find($id);
+        if (!$project) {
+            return Response::json([
+                'message' => 'Project not found',
+            ], 404);
+        }
+        $project->photos()->detach();
+        $project->users()->detach();
+        Project::destroy($id);
+
+        return Response::json([
+            'message' => 'Project deleted',
+            'projectId' => $project->id,
+        ], 200);
+    }
+
+    private static function addPhotoToProject($projectId, $photoUrl) {
+        Photo::create(array(
+            'project_id' => $projectId,
+            'photoUrl' => $photoUrl
+        ));
+    }
+
+    private static function addUserToProject($userEmail, $projectId) {
+        $userId = \DB::table('users')->where('email', '=', $userEmail)->get()->first()->id;
+        \DB::table('user_project')->insert([
+            'project_id' => $projectId,
+            'user_id' => $userId
+        ]);
     }
 }

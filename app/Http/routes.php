@@ -10,7 +10,6 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -22,31 +21,33 @@
 |
 */
 
-Route::get('/', function() {
+Route::get('/', function () {
     return view('index');
 });
 
 Route::group(
-    ['middleware' => 'web'],
-    function () {
-        Route::group(
-            ['prefix' => 'api'],
-            function () {
-                Route::get('projects/{id}', 'ProjectsController@show');
-                Route::post('projects', 'ProjectsController@store');
-            }
-        );
-    }
-);
-Route::group(
     ['prefix' => 'api'],
     function () {
+        //Route::group(['middleware' => 'web'], function () {
+          //  Route::auth();
+        //});
         Route::get('/', 'HomeController@index');
-        Route::get('user/{id}', 'StudentsController@index');
-        Route::get('students', 'StudentsController@index');
-        Route::get('students/{id}', 'StudentsController@show');
-        Route::get('students/{id}/projects', 'ProjectsController@showByStudentId');
+        Route::post('login', 'Auth\AuthController@login');
+        Route::get('logout', 'Auth\AuthController@logout');
+        Route::post('register', 'Auth\AuthController@register');
+
+        Route::put('profile/{id}', 'UsersController@show');
+        Route::delete('profile/{id}', 'UsersController@destroy');
+
+        Route::get('students', 'UsersController@index');
+        Route::get('students/{id}', 'UsersController@show');
+
         Route::get('projects', 'ProjectsController@index');
+        Route::post('projects', 'ProjectsController@store');
         Route::get('projects/{id}', 'ProjectsController@show');
+        Route::put('projects/{id}', 'ProjectsController@update');
+        Route::delete('projects/{id}', 'ProjectsController@destroy');
     }
 );
+
+

@@ -22,7 +22,6 @@ class ProjectTableSeeder extends Seeder
             Project::create(array(
                 'name' => $faker->name,
                 'githubUrl' => $faker->url,
-                'password' => \Hash::make($faker->name . $faker->year),
                 'description' => $faker->text(100)
             ));
         }

@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
 
         \Eloquent::unguard();
 
-        \DB::table('user_project')->delete();
+        //\DB::table('user_project')->delete();
 
         $faker = Faker\Factory::create();
 

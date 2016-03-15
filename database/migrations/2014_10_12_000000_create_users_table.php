@@ -21,8 +21,8 @@ class CreateUsersTable extends Migration
             $table->dateTime('dateOfBirth');
             $table->integer('grade')->nullable();
             $table->string('photoUrl')->nullable();
-            $table->string('course')->index();
-            $table->integer('season')->index();
+            $table->string('course');
+            $table->integer('season');
             $table->rememberToken();
             $table->timestamps();
         });
