@@ -10,92 +10,55 @@
 
     <title>IT Got Talent</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="/app/lib/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/app/lib/jquery.js"></script>
+    <link rel="stylesheet" href="/app/lib/css/bootstrap.css">
+    <link rel="stylesheet" href="/app/styles/reset.css">
+    <link rel="stylesheet" href="/app/styles/style.css">
+    <link rel="stylesheet" href="/app/styles/projects.css">
+    <link rel="stylesheet" href="/app/styles/userProfile.css">
+    <link rel="stylesheet" href="/app/styles/students.css">
+    <link rel="stylesheet" href="/app/styles/currentProject.css">
+    <link rel="stylesheet" href="/app/styles/registration.css">
+    <link rel="stylesheet" href="/app/styles/animate.css">
 
-    <!-- Custom CSS -->
-    <link href="/app/lib/css/business-casual.css" rel="stylesheet">
 
-    <!-- Fonts -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Bad+Script&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <link rel="stylesheet" href="/app/styles/style.css" />
-    <link rel="stylesheet" href="/app/styles/round-about.css">
-    <style>
-    .smallText{
-        font-size: 12px;
-        display: inline-block;
-        margin-left: 5px;
-    }
 
-    input.ng-invalid.ng-dirty.form-validation{
-         background-color: pink;
-    }
-    input.ng-valid.ng-dirty.form-validation{
-        background-color: greenyellow;
-    }
-</style>
 </head>
 <body ng-app="app">
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#/home">IT Got Talents</a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#/home">Home</a></li>
-                <li><a href="#/students">Students<span class="sr-only"></span></a></li>
-                <li><a href="#/projects">Projects</a></li>
-                <li><a href="#/register">Register</a></li>
-            </ul>
-
-            <form class="navbar-form navbar-right" role="search">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Username">
-                </div>
-                <div class="form-group">
-                    <input type="Password" class="form-control" placeholder="Password">
-                </div>
-                <button type="submit" class="btn btn-primary">Login</button>
-            </form>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
-
-<div class="container">
-
-    <ng-view>
-
-    </ng-view>
-
-</div>
-<footer>
+<div class="container-fluid">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <p>Copyright &copy; Your Website 2014</p>
+        <div class="row navbar">
+            <div class="col-lg-3 col-md-3 logo"><a href="#/home">
+                    <img src="/app/images/it-talents-logo1.png" alt=""></a></div>
+            <div class="col-lg-1 col-md-1 nav green" id="active"><a href="#/home">
+                    <img src="/app/images/home-5-xxl.png" alt=""></a></div>
+            <div class="col-lg-1 col-md-1 nav yellow animate" ><a href="#/students">
+                    <img src="/app/images/student.png"></a></div>
+            <div class="col-lg-1 col-md-1 nav orange animate"><a href="#/projects">
+                    <img src="/app/images/project.png" alt=""></a></div>
+            <div class="col-lg-1 col-md-1 nav pink animate"><a href="#/register">
+                    <img src="/app/images/login.png" alt=""></a></div>
+        </div>
+        <ng-view>
+
+        </ng-view>
+
+
+
+        <div class="row footer">
+            <div class="col-lg-3 col-md-3 col-xs-12 footer blue animate">
+                <a href="#"><img src="app/images/copyright.png" alt=""></a>
+                <p>Copyright Watermelon 2016</p>
             </div>
+            <div class="col-lg-1 col-md-1  col-xs-12 footer green animate"><a href="www.facebook.com"><img src="/app/images/facebook.png" alt=""></a></div>
+            <div class="col-lg-1 col-md-1  col-xs-12 footer yellow animate"><a href="#"><img src="/app/images/google-plus.png"></a></div>
+            <div class="col-lg-1 col-md-1  col-xs-12 footer orange animate"><a href="#"><img src="/app/images/twitter.png" alt=""></a></div>
+            <div class="col-lg-1 col-md-1  col-xs-12 footer pink animate"><a href="#"><img src="/app/images/instagram.png" alt=""></a></div>
         </div>
     </div>
-</footer>
-
+</div>
 
 <script src="/app/lib/jquery.js"></script>
 <script src="/app/lib/bootstrap.min.js"></script>
@@ -114,7 +77,39 @@
 <script src="/app/js/register/service-regLoginLogout.js"></script>
 <script src="/app/js/register/service-authentication.js"></script>
 <script src="/app/js/projects/service-projects.js"></script>
+<script src="/app/js/home/ctrl-home.js"></script>
+<script src="/app/js/students/ctrl-students-edit.js"></script>
+<script src="/app/js/projects/ctrl-projects-add.js"></script>
+
+<script type="text/javascript">
+    var klasses = ["bounce", "pulse", "swing", "rubberBand", "tada", "wobble", "jello", "rotateIn"];
+
+    var item = klasses[Math.floor(Math.random()*klasses.length)];
+
+    $.fn.extend({
+        animateCss: function (animationName) {
+            $(this).addClass('animated ' + animationName);
+        }
+    });
 
 
+    $('#active').animateCss(item);
+
+    $('.animate').on("mouseenter", function () {
+        $(this).addClass('animated ' + 'pulse');
+    });
+
+    $('.animate').on("mouseleave", function () {
+        $(this).removeClass('animated ' + 'pulse');
+    });
+
+    $('.partners img').on("mouseenter", function () {
+        $(this).addClass('animated ' + 'tada');
+    })
+
+    $('.partners img').on("mouseleave", function () {
+        $(this).removeClass('animated ' + 'tada');
+    });
+</script>
 </body>
 </html>

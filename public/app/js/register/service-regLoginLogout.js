@@ -2,9 +2,6 @@ app.factory('service_regLoginLogout',function($http, baseUrl, $cookies, $resourc
 
     console.log('service-regLoginLogout is ready');
 
-
-
-
     function registerStudent(student){
         return $resource(baseUrl + '/register')
             .save(student)
@@ -40,6 +37,4 @@ app.factory('service_regLoginLogout',function($http, baseUrl, $cookies, $resourc
         login   : loginStudent,
         logout  : logout
     }
-
-
 });

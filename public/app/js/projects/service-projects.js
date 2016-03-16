@@ -56,6 +56,4 @@ app.factory('service_projects',function($resource, baseUrl, $http){
     //            })
     //    }
     //};
-
-
 });
