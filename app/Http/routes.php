@@ -21,6 +21,7 @@
 |
 */
 
+//Redirects all unknown requests to angular client.
 Route::get('/', function () {
     return view('index');
 });
@@ -28,24 +29,24 @@ Route::get('/', function () {
 Route::group(
     ['prefix' => 'api'],
     function () {
-        //Route::group(['middleware' => 'web'], function () {
-          //  Route::auth();
-        //});
-        Route::get('/', 'HomeController@index');
-        Route::post('login', 'Auth\AuthController@login');
-        Route::get('logout', 'Auth\AuthController@logout');
-        Route::post('register', 'Auth\AuthController@register');
+        Route::group( [ 'middleware' => ['web'] ], function ()
+        {
+            Route::get('/', 'HomeController@index');
+            Route::post('login', 'Auth\AuthController@login');
+            Route::get('logout', 'Auth\AuthController@logout');
+            Route::post('register', 'Auth\AuthController@register');
 
-        Route::put('students/{id}', 'UsersController@update');
-        Route::delete('students/{id}', 'UsersController@destroy');
+            Route::put('students/{id}', 'UsersController@update');
+            Route::delete('students/{id}', 'UsersController@destroy');
 
-        Route::get('students', 'UsersController@index');
-        Route::get('students/{id}', 'UsersController@show');
+            Route::get('students', 'UsersController@index');
+            Route::get('students/{id}', 'UsersController@show');
 
-        Route::get('projects', 'ProjectsController@index');
-        Route::post('projects', 'ProjectsController@store');
-        Route::get('projects/{id}', 'ProjectsController@show');
-        Route::put('projects/{id}', 'ProjectsController@update');
-        Route::delete('projects/{id}', 'ProjectsController@destroy');
+            Route::get('projects', 'ProjectsController@index');
+            Route::post('projects', 'ProjectsController@store');
+            Route::get('projects/{id}', 'ProjectsController@show');
+            Route::put('projects/{id}', 'ProjectsController@update');
+            Route::delete('projects/{id}', 'ProjectsController@destroy');
+        });
     }
 );

@@ -99,7 +99,6 @@ class UsersController extends Controller
         }
 
         $user->save();
-
         return Response::json([
             'message' => 'User updated',
             'userId' => $user->id,

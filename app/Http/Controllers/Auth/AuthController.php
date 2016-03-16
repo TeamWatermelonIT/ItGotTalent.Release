@@ -5,12 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
+use Validator;
 use Illuminate\Support\Facades\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-use Illuminate\Contracts\Validation\Validator;
-
 class AuthController extends Controller
 {
     /*
@@ -33,7 +32,7 @@ class AuthController extends Controller
      */
     protected $redirectTo = '/';
 
-    protected $guard = 'api';
+    protected $guard = 'web';
 
     /**
      * Create a new authentication controller instance.
@@ -53,13 +52,13 @@ class AuthController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6',
-            'course' => 'required',
-            'season' => 'required'
-        ]);
+        return Validator::make ($data, [
+           'name' => 'required|max:70',
+           'email' => 'required|email|max:255|unique:users',
+           'password' => 'required|min:6',
+           'course' => 'required',
+           'season' => 'required'
+       ]);
     }
 
     /**
@@ -91,6 +90,6 @@ class AuthController extends Controller
 
         return Response::json([
             'message' => 'Logout successfull',
-        ], 404);
+        ], 200);
     }
 }
