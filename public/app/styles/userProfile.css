@@ -1,0 +1,154 @@
+body{
+    background-image: url(../images/texture-dark-background-metal.jpg);
+    font-family: 'Bad Script', cursive;
+}
+
+.logo {
+    height:100px;
+    margin: 10px 280px 10px 40px;
+}
+
+.navbar {
+    margin-bottom: 50px;
+}
+
+.nav {
+    height: 100px;
+    text-align: center;
+    margin: 10px;
+    -webkit-border-radius:5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+
+.nav img {
+    width: 50px;
+    height: 50px;
+    margin: 25px 0 0 15px;
+}
+
+.green{
+    background-color: #58FA58;
+}
+
+.yellow {
+    background-color: #F4FA58;
+}
+
+.orange {
+    background-color: #FAAC58;
+}
+
+.pink {
+    background-color: #FA5858;
+}
+
+.photo {
+    margin:0px auto 40px auto;
+    padding-left: 0;
+    margin-left: -5px;
+}
+
+.photo img{
+    -webkit-border-radius:200px;
+    -moz-border-radius: 200px;
+    border-radius: 200px;
+    display: block;
+    margin: 0 auto ;
+    max-width: 300px;
+    max-height:300px;
+
+}
+
+.edit {
+    color: #FFFFFF;
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+}
+.modal-body .form-horizontal .col-sm-2,
+.modal-body .form-horizontal .col-sm-10 {
+    width: 100%
+}
+
+.modal-body .form-horizontal .control-label {
+    text-align: left;
+}
+.modal-body .form-horizontal .col-sm-offset-2 {
+    margin-left: 15px;
+}
+
+.edit img{
+    width: 60px;
+    height: 60px;
+    margin: 0px auto 5px auto;
+}
+
+.currentDescription{
+    color: #FFFFFF;
+    text-align: center;
+    margin-bottom: 50px;
+    background-color: rgba(88, 88, 88, 0.2);
+    -webkit-border-radius:20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
+
+.currentDescription h1 {
+    font-size: 35px;
+}
+
+.currentDescription p, a {
+    font-size: 20px;
+    color: #05b3e8;
+    text-decoration: none;
+}
+
+.currentDescription a:hover {
+    color: #58FA58;
+}
+.currentDescriptionContainer {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+.footer-nav {
+    margin-bottom: 10px;
+}
+.footer {
+    height: 100px;
+    text-align: center;
+    margin: 10px;
+    -webkit-border-radius:5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding-left: 0;
+}
+
+.footer img {
+    width: 50px;
+    height: 50px;
+    margin: 25px 0 0 15px;
+}
+.blue {
+    background-color: #05b3e8;
+    color: #FFFFFF;
+    margin: 10px 280px 10px 40px;
+}
+
+.blue img {
+    margin-top: 15px;
+}
+
+#active {
+    -webkit-animation-duration: 3s;
+    -webkit-animation-delay: 1s;
+    -webkit-animation-iteration-count: infinite;
+}
+
+@media only screen and (max-width: 1000px) {
+    .blue {
+        margin-left: 10px;
+    }
+
+}

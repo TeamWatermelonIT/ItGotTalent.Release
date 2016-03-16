@@ -4,16 +4,25 @@ app.controller('ctrl-register', function($scope,service_regLoginLogout){
 
 
 
-    $scope.register = function register(user, newUserForm){
-
-        $scope.flagPass = false;
-        if(!newUserForm.$valid){
+    $scope.loginUser = function loginUser(user, logForm){
+        if (!logForm.$valid){
             return;
-        }else if(user.pass1 !== user.pass2){
-            $scope.flagPass = true;
+        }
+        console.log(user);
+        service_regLoginLogout.login(user)
+
+    };
+
+
+    $scope.registerUser = function registerUser(userReg, registerForm){
+
+        if(!registerForm.$valid){
+            return;
+        }else if(userReg.pass1 !== userReg.pass2){
             return;
         }else{
-            console.log(user)
+            service_regLoginLogout.register(userReg);
+            console.log(userReg)
         }
 
     }

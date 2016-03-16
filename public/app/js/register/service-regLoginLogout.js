@@ -1,39 +1,45 @@
-app.factory('service_regLoginLogout',function($http, baseUrl, $resource, service_authentication){
+app.factory('service_regLoginLogout',function($http, baseUrl, $cookies, $resource){
 
     console.log('service-regLoginLogout is ready');
 
-    var resource = $resource(baseUrl + '/');
 
 
-    function registerStudent(user){
-        return $resource(baseUrl + 'user/register').save(user)
+
+    function registerStudent(student){
+        return $resource(baseUrl + '/register')
+            .save(student)
+            .$promise
+            .then(function(data){
+                console.log(data);
+                //service_authentication.saveStudent(data);
+                //console.log(service_authentication.getHeaders())
+            })
     }
 
-    function logInStudent(user){
-
+    function loginStudent(student){
+        return $resource(baseUrl + '/login')
+            .save(student)
+            .$promise
+            .then(function(data){
+                console.log(data);
+                //service_authentication.saveStudent(data);
+            })
     }
 
-    function logoutUser(){
-
+    function logout(){
+        return $resource(baseUrl + '/logout')
+            .save(student)
+            .$promise
+            .then(function(data){
+                //service_authentication.removeStudent(data);
+            })
     }
+
     return{
-        registerStudent : registerStudent,
-        logInStudent : logInStudent,
-        logoutUser : logoutUser
-
-    };
-
-    //return{
-    //    saveStudent: function(successCB){
-    //        $http({method: 'PUT', url: baseUrl + '/user'})
-    //            .success(function(data,status,headers,config){
-    //                successCB(data);
-    //            })
-    //            .error(function(data,status,headers,config){
-    //                console.log(status + ' !')
-    //            })
-    //    }
-    //};
+        register: registerStudent,
+        login   : loginStudent,
+        logout  : logout
+    }
 
 
 });
