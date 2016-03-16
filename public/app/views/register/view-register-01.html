@@ -1,0 +1,212 @@
+<div class="text-center" style="padding:50px 0">
+    <div class="logo login-color">login</div>
+    <!-- Main Form -->
+    <div class="login-form-1">
+        <form id="login-form" class="text-left" name="logForm">
+            <div class="login-form-main-message"></div>
+            <div class="main-login-form">
+                <div class="login-group">
+                    <div class="form-group">
+                        <label for="lg_email" class="sr-only">Email</label>
+                        <input type="text"
+                               class="form-control"
+                               id="lg_email"
+                               name="lg_email"
+                               required="required"
+                               ng-pattern=""
+                               ng-model="userLog.email"
+                               placeholder="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="lg_password" class="sr-only">Password</label>
+                        <input type="password"
+                               class="form-control"
+                               id="lg_password"
+                               name="lg_password"
+                               required="required"
+                               ng-model="userLog.password"
+                               placeholder="password">
+                    </div>
+                    <div class="form-group login-group-checkbox">
+                        <input type="checkbox" id="lg_remember" name="lg_remember">
+                        <label for="lg_remember">remember</label>
+                    </div>
+                </div>
+                <button class="login-button"
+                        data-ng-click="loginUser(userLog,logForm)"
+                        ng-disabled="logForm.$invalid">
+                    <i class="fa fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="etc-login-form">
+                <p>forgot your password? <a href="#">click here</a></p>
+                <p>new user? <a href="#">create new account</a></p>
+            </div>
+        </form>
+    </div>
+    <!-- end:Main Form -->
+</div>
+
+<!-- REGISTRATION FORM -->
+<div class="text-center" style="padding:50px 0">
+    <div class="logo registration-color">register</div>
+    <!-- Main Form -->
+    <div class="login-form-1">
+        <form id="register-form" class="text-left" name="registerForm">
+            <div class="login-form-main-message"></div>
+            <div class="main-login-form">
+                <div class="login-group">
+                    <div class="form-group">
+                        <label for="reg_fullname" class="sr-only">Full Name</label>
+                        <input type="text"
+                               required="required"
+                               class="form-control form-validation"
+                               ng-pattern="/^[A-z]+$/"
+                               ng-model="userReg.name"
+                               id="reg_fullname"
+                               name="reg_fullname"
+                               placeholder="full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="reg_password" class="sr-only">Password</label>
+                        <input type="password"
+                               required="required"
+                               class="form-control form-validation"
+                               id="reg_password"
+                               name="reg_password"
+                               ng-model="userReg.pass1"
+                               ng-minlength="5"
+                               placeholder="password">
+                    </div>
+                    <div class="form-group">
+                        <label for="reg_password_confirm" class="sr-only">Password Confirm</label>
+                        <input type="password"
+                               required="required"
+                               class="form-control form-validation"
+                               id="reg_password_confirm"
+                               name="reg_password_confirm"
+                               ng-model="userReg.pass2"
+                               ng-minlength="5"
+                               placeholder="confirm password">
+                    </div>
+                    <p style="font-size: 10px; color: #FA5858"
+                       ng-if="userReg.pass2 != userReg.pass1">The confirm password in not equal
+                    </p>
+                    <div class="form-group">
+                        <label for="reg_email" class="sr-only">Email</label>
+                        <input type="text"
+                               required="required"
+                               class="form-control form-validation"
+                               id="reg_email"
+                               name="reg_email"
+                               ng-model="userReg.email"
+                               placeholder="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="bday" class="sr-only">Birth Date</label>
+                        <input type="text"
+                               required="required"
+                               class="form-control form-validation"
+                               id="bday"
+                               name="bday"
+                               ng-pattern="/\d\d/\d\d/\d\d\d\d/"
+                               ng-model="userReg.dateOfBirth"
+                               placeholder="birth date (dd/mm/yyyy)">
+                    </div>
+                    <div class="form-group login-group-checkbox">
+                        <input type="radio"
+                               class=""
+                               name="reg_gender"
+                               id="male"
+                               ng-model="userReg.isMale"
+                               placeholder="username">
+                        <label for="male">male</label>
+
+                        <input type="radio" class=""
+                               name="reg_gender"
+                               id="female">
+                        <label for="female">female</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="season" class="sr-only">IT Talents Season</label>
+                        <input type="text"
+                               required="required"
+                               class="form-control form-validation"
+                               id="season"
+                               name="season"
+                               ng-pattern="/[0-9]/"
+                               ng-model="userReg.season"
+                               placeholder="it talents season">
+                    </div>
+                    <div class="form-group">
+                        <label for="language" class="sr-only">Programming language</label>
+                        <input type="text"
+                               required="required"
+                               class="form-control form-validation"
+                               id="language"
+                               name="language"
+                               ng-pattern="/[A-z]+/"
+                               ng-model="userReg.course"
+                               placeholder="programming language">
+                    </div>
+                    <div class="form-group">
+                        <label for="photo" class="sr-only">Photo URL</label>
+                        <input type="text"
+                               required="required"
+                               class="form-control form-validation"
+                               id="photo"
+                               name="language"
+                               ng-model="userReg.photoUrl"
+                               ng-pattern="/(https?:\/\/.*\.(?:png|jpg))/"
+                               placeholder="photo url">
+                    </div>
+                    <div class="form-group login-group-checkbox">
+                        <input type="checkbox" class="" id="reg_agree" name="reg_agree">
+                        <label for="reg_agree">i agree with <a href="#">terms</a></label>
+                    </div>
+                </div>
+                <button class="login-button"
+                        data-ng-click="registerUser(userReg,registerForm)"
+                        ng-disabled="registerForm.$invalid">
+                    <i class="fa fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="etc-login-form">
+                <p>already have an account? <a href="#">login here</a></p>
+            </div>
+        </form>
+    </div>
+    <!-- end:Main Form -->
+</div>
+
+<!-- FORGOT PASSWORD FORM -->
+<div class="text-center" style="padding:50px 0">
+    <div class="logo password-color">forgot password</div>
+    <!-- Main Form -->
+    <div class="login-form-1">
+        <form id="forgot-password-form" class="text-left">
+            <div class="etc-login-form">
+                <p>When you fill in your registered email address, you will be sent instructions on how to reset your password.</p>
+            </div>
+            <div class="login-form-main-message"></div>
+            <div class="main-login-form">
+                <div class="login-group">
+                    <div class="form-group">
+                        <label for="fp_email" class="sr-only">Email address</label>
+                        <input type="text"
+                               class="form-control"
+                               id="fp_email"
+                               name="fp_email"
+                               placeholder="email address">
+                    </div>
+                </div>
+                <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+            </div>
+            <div class="etc-login-form">
+                <p>already have an account? <a href="#">login here</a></p>
+                <p>new user? <a href="#">create new account</a></p>
+            </div>
+        </form>
+    </div>
+    <!-- end:Main Form -->
+</div>

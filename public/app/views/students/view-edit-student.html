@@ -1,0 +1,326 @@
+<!--<form role="form" name="addProjectForm" class="col-lg-6" >-->
+
+    <!--<div class="form-group ">-->
+        <!--<label>name</label>-->
+        <!--<input type="text" name="name"-->
+               <!--class="form-control"-->
+               <!--placeholder="name"-->
+               <!--ng-model="student.name">-->
+    <!--</div>-->
+    <!--<div class="form-group ">-->
+        <!--<label>email</label>-->
+        <!--<input type="text" name=""-->
+               <!--class="form-control"-->
+               <!--placeholder="githubUrl"-->
+               <!--ng-model="student.email">-->
+    <!--</div>-->
+    <!--<div class="form-group ">-->
+        <!--<label>photoUrl</label>-->
+        <!--<input type="text" name=""-->
+               <!--class="form-control"-->
+               <!--placeholder="photoUrl"-->
+               <!--ng-model="student.photoUrl">-->
+    <!--</div>-->
+
+
+    <!--<button data-ng-click="editStudent(student)">EDIT</button>-->
+<!--</form>-->
+
+
+
+
+<div class="row user">
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 photoAndActions">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 photo">
+                <img src="../../public/app/images/user1.png" alt="">
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div ng-controller="ctrl-students-edit"
+                 class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="edit animate"
+                     data-toggle="modal"
+                     data-target="#myModalHorizontal">
+                    <img src="../../public/app/images/edit.png" alt="">
+                    <p>Edit profile</p>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="myModalHorizontal" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <button type="button" class="close"
+                                        data-dismiss="modal">
+                                    <span aria-hidden="true">&times;</span>
+                                    <span class="sr-only">Close</span>
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel">
+                                    Edit profile
+                                </h4>
+                            </div>
+
+                            <!-- Modal Body -->
+                            <div class="modal-body">
+
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"
+                                               for="studentName" >Name</label>
+                                        <div class="col-sm-10">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   id="studentName"
+                                                   ng-model="student.name"
+                                                   placeholder="Name"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label  class="col-sm-2 control-label"
+                                                for="inputEmail3">New email</label>
+                                        <div class="col-sm-10">
+                                            <input type="email"
+                                                   class="form-control"
+                                                   id="inputEmail3"
+                                                   ng-model="student.email"
+                                                   placeholder="Email"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"
+                                               for="oldPassword" >Old password</label>
+                                        <div class="col-sm-10">
+                                            <input type="password"
+                                                   class="form-control"
+                                                   id="oldPassword"
+                                                   placeholder="Password"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"
+                                               for="newPassword" >New password</label>
+                                        <div class="col-sm-10">
+                                            <input type="password"
+                                                   class="form-control"
+                                                   id="newPassword"
+                                                   placeholder="Password"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"
+                                               for="repeatPassword" >Repeat new password</label>
+                                        <div class="col-sm-10">
+                                            <input type="password"
+                                                   class="form-control"
+                                                   id="repeatPassword"
+                                                   placeholder="Password"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label  class="col-sm-2 control-label"
+                                                for="uploadPhoto">Change photo</label>
+                                        <div class="col-sm-10">
+                                            <input type="url"
+                                                   class="form-control"
+                                                   id="uploadPhoto"
+                                                   ng-model="student.photoUrl"
+                                                   placeholder="New photo url"/>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+
+                            <!-- Modal Footer -->
+                            <div class="modal-footer">
+                                <button type="button"
+                                        class="btn btn-default"
+                                        data-dismiss="modal">
+                                    Close
+                                </button>
+                                <button type="button"
+                                        data-ng-click="editStudent(student)"
+                                        class="btn btn-primary">
+                                    Save changes
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- ADD PROJECT -->
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+                 ng-controller="ctrl-project-add">
+                <div class="edit animate" data-toggle="modal" data-target="#myModalHorizontal1">
+                    <img src="../../public/app/images/upload.png" alt="">
+                    <p>Upload project</p>
+                </div>
+                <div class="modal fade" id="myModalHorizontal1" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <button type="button"
+                                        class="close"
+                                        data-dismiss="modal">
+                                    <span aria-hidden="true">&times;</span>
+                                    <span class="sr-only">Close</span>
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel1">
+                                    Upload project
+                                </h4>
+                            </div>
+
+                            <!-- Modal Body -->
+                            <div class="modal-body">
+
+                                <form class="form-horizontal"
+                                      role="form">
+                                    <div class="form-group">
+                                        <label  class="col-sm-2 control-label"
+                                                for="source">Source code url</label>
+                                        <div class="col-sm-10">
+                                            <input type="url"
+                                                   class="form-control"
+                                                   id="source"
+                                                   ng-model="project.githubUrl"
+                                                   placeholder="Source code url"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"
+                                               for="projectName" >Project name</label>
+                                        <div class="col-sm-10">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   id="projectName"
+                                                   ng-model="project.name"
+                                                   placeholder="Project name"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"
+                                               for="projectAuthors" >Project authors</label>
+                                        <div class="col-sm-10">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   id="projectAuthors"
+                                                   ng-model="project.users.user"
+                                                   placeholder="Project authors"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"
+                                               for="projectDescription" >Project description</label>
+                                        <div class="col-sm-10">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   id="projectDescription"
+                                                   ng-model="project.description"
+                                                   placeholder="Project description"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"
+                                               for="projectDescription" >Project photo url</label>
+                                        <div class="col-sm-10">
+                                            <input type="url"
+                                                   class="form-control"
+                                                   id="projectPhoto"
+                                                   ng-model="project.photos.photoUrl"
+                                                   placeholder="Project photo url"/>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Modal Footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default"
+                                        data-dismiss="modal">
+                                    Cancel
+                                </button>
+                                <button type="button"
+                                        data-ng-click="addProject(project)"
+                                        class="btn btn-primary">
+                                    Add project
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="edit animate">
+                    <a href=""><img src="../../public/app/images/delete.png" alt=""></a>
+                    <p>Delete profile</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div ng-controller="ctrl-students-details"
+         class="col-lg-8 col-md-8 col-sm-12 col-xs-12 currentDescription">
+        <div class="currentDescriptionContainer">
+            <h1>Name </h1>
+            <p>{{student.name}}</p>
+            <h1>Email </h1>
+            <p>{{student.email}}</p>
+            <h1>Date of birth </h1>
+            <p>{{student.dateOfBirth}}</p>
+            <h1>IT Talents Season </h1>
+            <p>{{student.season}}</p>
+            <h1>Course(s)  </h1>
+            <p>{{student.course}}</p>
+            <h1>Projects</h1>
+            <ul class="list-group-item" >
+                <li ng-repeat="project in student.projects">
+                    <a href="#/projects/{{project.id}}">{{project.name}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

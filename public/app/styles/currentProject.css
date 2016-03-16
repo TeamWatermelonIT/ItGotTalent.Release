@@ -1,0 +1,142 @@
+body{
+    background-image: url(../images/texture-dark-background-metal.jpg);
+    font-family: 'Bad Script', cursive;
+}
+
+.logo {
+    height:100px;
+    margin: 10px 280px 10px 40px;
+}
+
+.navbar {
+    margin-bottom: 50px;
+}
+
+.nav {
+    height: 100px;
+    text-align: center;
+    margin: 10px;
+    -webkit-border-radius:5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+
+.nav img {
+    width: 50px;
+    height: 50px;
+    margin: 25px 0 0 15px;
+}
+
+.green{
+    background-color: #58FA58;
+}
+
+.yellow {
+    background-color: #F4FA58;
+}
+
+.orange {
+    background-color: #FAAC58;
+}
+
+.pink {
+    background-color: #FA5858;
+}
+
+.projectName {
+    text-align: center;
+    color: #CCCCCC;
+    padding-top: 20px;
+    margin-bottom: 50px;
+}
+
+
+ul {
+    padding:0 0 0 0;
+    margin: 0 0 20px 0;
+}
+
+ul li {
+    list-style:none;
+    text-align: center;
+
+}
+ul li img {
+    margin: 0 auto;
+    margin-bottom: 20px;
+    cursor: pointer;
+    width: 180px;
+    border: 1px solid #05b3e8;
+    -webkit-border-radius:5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.projectReview {
+    background-color: rgba(88, 88, 88, 0.2);
+    -webkit-border-radius:50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    margin-bottom: 50px;
+}
+
+.projectInfo {
+    color: #CCC;
+    text-align: center;
+    font-size: 20px;
+    padding-bottom: 50px;
+
+}
+
+.projectInfo a {
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 900;
+    color: #05b3e8;
+}
+
+.projectInfo a:hover {
+    color: #58FA58;
+    font-size: 21px;
+}
+
+.footer-nav {
+    margin-bottom: 10px;
+}
+.footer {
+    height: 100px;
+    text-align: center;
+    margin: 10px;
+    -webkit-border-radius:5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding-left: 0px;
+}
+
+.footer img {
+    width: 50px;
+    height: 50px;
+    margin: 25px 0 0 15px;
+}
+.blue {
+    background-color: #05b3e8;
+    color: #FFFFFF;
+    margin: 10px 280px 10px 40px;
+}
+
+.blue img {
+    margin-top: 15px;
+}
+
+#active {
+    -webkit-animation-duration: 3s;
+    -webkit-animation-delay: 1s;
+    -webkit-animation-iteration-count: infinite;
+}
+
+@media only screen and (max-width: 1000px) {
+    .blue {
+        margin-left: 10px;
+    }
+}

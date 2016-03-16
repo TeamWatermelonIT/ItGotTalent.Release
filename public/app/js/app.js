@@ -1,35 +1,51 @@
-var app = angular.module('app',['ngRoute','ngResource']);
+var app = angular.module('app',['ngRoute','ngResource', 'ngCookies']);
 console.log('app is ready');
 
-app.constant('baseUrl', '/api');
+app.constant('baseUrl', '../../public/api');
 
 
 app.config(function($routeProvider){
     $routeProvider.when('/home', {
-        templateUrl: 'app/views/home/view-home.html',
-        controller : ''
-    }).when('app/carousel-example-generic', {
-        templateUrl: '/views/home/view-home.html',
-        controller : ''
-    }).when('/', {
-        templateUrl: 'app/views/home/view-home.html',
-        controller : ''
-    }).when('/students', {
-        templateUrl: 'app/views/students/view-students-01.html',
+        templateUrl: '../../public/app/views/home/view-home.html',
+        controller : 'ctrl-home'
+    });
+    $routeProvider.when('/', {
+        templateUrl: '../../public/views/home/view-home.html',
+        controller : 'ctrl-home'
+    });
+    $routeProvider.when('/students', {
+        templateUrl: '../../public/app/views/students/view-students.html',
         controller : 'ctrl-students'
-    }).when('/students/:id', {
-        templateUrl: 'app/views/students/view-student-details.html',
+    });
+
+    $routeProvider.when('/students/:id', {
+        templateUrl: '../../public/app/views/students/view-student-details.html',
         controller : 'ctrl-students-details'
-    }).when('/projects', {
-        templateUrl: 'app/views/projects/view-projects.html',
+    });
+
+    $routeProvider.when('/students/:id/edit', {
+        templateUrl: '../../public/app/views/students/view-edit-student.html',
+        controller : 'ctrl-students-edit'
+    });
+
+    $routeProvider.when('/projects', {
+        templateUrl: '../../public/app/views/projects/view-projects.html',
         controller : 'ctrl-projects'
-    }).when('/projects/:id', {
-        templateUrl: 'app/views/projects/view-projects-details.html',
+    });
+    $routeProvider.when('/projects/:id', {
+        templateUrl: '../../public/app/views/projects/view-projects-details.html',
         controller : 'ctrl-project'
-    }).when('/register', {
-            templateUrl: 'app/views/register/view-register.html',
+    });
+    $routeProvider.when('/register', {
+            templateUrl: '../../public/app/views/register/view-register-01.html',
             controller : 'ctrl-register'
-        })
-        .otherwise({redirectTo: '/home'})
+        });
+
+    $routeProvider.when('/addProject', {
+        templateUrl: '../../public/app/views/projects/view-add-project.html',
+        controller : 'ctrl-project-edit'
+    });
+
+        //.otherwise({redirectTo: '/home'})
 
 });

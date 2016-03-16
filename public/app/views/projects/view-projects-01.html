@@ -1,0 +1,54 @@
+<div class="row projects-info">
+    <div class="col-lg-12 col-md-12 col-xs-12">
+        <h1>We are glad to present you our students` projects</h1>
+        <hr id="hrOne">
+        <hr id="hrTwo">
+    </div>
+</div>
+<div class="allProjects">
+    <div class="row projects">
+        <div class="col-lg-3 col-md-3 col-xs-6 " ng-repeat="project1 in arr1">
+            <img class="img-responsive green-border" src="../../public/app/images/project.jpg">
+            <div class="green">
+                <p><b>Authors:</b> <a href="">John Doe</a>,
+                    <a href="">Jane Doe</a><br>
+                    <a href="#/projects/{{project1.id}}"><b>Project name:</b> {{project1.name}}<br></a>
+                    <b>Description:</b> {{project1.description}}.<br>
+                    <button class="animate"><a href="">See more</a></button> </p>
+            </div>
+        </div>
+    </div>
+    <div class="row projects">
+        <div class="col-lg-3 col-md-3 col-xs-6 " ng-repeat="project2 in arr2">
+            <img class="img-responsive green-border" src="../../public/app/images/project.jpg">
+            <div class="green">
+                <p><b>Authors:</b>
+                    <a href="">John Doe</a>,
+                    <a href="">Jane Doe</a><br>
+                    <a href="#/projects/{{project2.id}}"><b>Project name:</b> {{project2.name}}<br></a>
+                    <b>Description:</b> {{project2.description}}.<br>
+                    <button class="animate"><a href="">See more</a></button> </p>
+            </div>
+        </div>
+    </div>
+    <div class="row projects">
+        <div class="col-lg-3 col-md-3 col-xs-6 " ng-repeat="project3 in arr3">
+            <img class="img-responsive green-border" src="../../public/app/images/project.jpg">
+            <div class="green">
+                <p><b>Authors:</b> <a href="">John Doe</a>,
+                    <a href="">Jane Doe</a><br>
+                    <a href="#/projects/project3.id"><b>Project name:</b>{{project3.name}}<br></a>
+                    <b>Description:</b> {{project3.description}}.<br>
+                    <button class="animate"><a href="">See more</a></button> </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 text-center">
+        <ul class="pager">
+            <li class="previous"><a  href="#/projects?page={{page}}" ng-click="previous()">&larr; Back</a>
+            </li>
+            <li class="next"><a  href="#/projects?page={{page}}" ng-click="next()">More &rarr;</a>
+            </li>
+        </ul>
+    </div>
+</div>

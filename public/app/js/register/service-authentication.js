@@ -1,26 +1,38 @@
-app.factory('service_authentication',function(){
+app.factory('service_authentication',function($cookiesStore){
 
     // TO DO
 
-    var key = 'user';
+    var key = 'student';
 
 
     function saveStudentData(data){
-        localStorage.setItem(key, angular.toJson(data));
+        $cookiesStore.put(key, angular.toJson(data));
     }
 
-    function getUserData(){
-        return  angular.fromJson(localStorage.getItem(key));
+    function getStudentData(){
+        return  angular.fromJson($cookiesStore.get(key));
     }
 
     function getHeaders(){
-        // TO DO
+        var headers = {};
+        var studentData = getStudentData().user;
+        if(studentData){
+            headers.Authorization = 'Bearer ' + getStudentData().access_token;
+        }
+        return headers;
     }
+
+    function removeStudent(){
+        $cookiesStore.remove(key);
+    }
+
 
 
     return {
         saveStudent : saveStudentData,
-        getUser : getUserData
+        getStudent : getStudentData,
+        getHeaders : getHeaders,
+        removeStudent : removeStudent
     }
 
 });

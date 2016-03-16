@@ -5,8 +5,6 @@ app.factory('service_student_details',function($resource, baseUrl, $http, $log){
     var resource = $resource(baseUrl + '/students/:id' + {id:'@id'});
 
 
-
-
     function getStudentByID(id){
         return resource.get({id : id});
     }
