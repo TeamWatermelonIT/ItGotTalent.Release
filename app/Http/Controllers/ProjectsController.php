@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use App\Photo;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 
@@ -19,7 +20,7 @@ class ProjectsController extends Controller
         $name = Input::get('name');
 
         $query = Project::with('photos', 'users');
-        if($name != null){
+        if ($name != null) {
             $query->where('name', 'LIKE', "%$name%");
         }
         $projects = $query->paginate(10);
@@ -30,17 +31,22 @@ class ProjectsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store()
     {
+        if (!Auth::check()) {
+            return Response::json([
+                'message' => 'Unauthorized access'
+            ], 401);
+        }
         \Eloquent::unguard();
 
         $users = json_decode(Input::get('users'));
-        foreach($users as $userEmail){
+        foreach ($users as $userEmail) {
             $user = \DB::table('users')->where('email', '=', $userEmail)->first();
-            if(!$user){
+            if (!$user) {
                 return Response::json([
                     'message' => 'Invalid user',
                     'email' => $userEmail
@@ -48,15 +54,16 @@ class ProjectsController extends Controller
             }
         }
 
-        if(Input::get('name') && Input::get('githubUrl') && Input::get('description')
-            && Input::get('photos')) {
+        if (Input::get('name') && Input::get('githubUrl') && Input::get('description')
+            && Input::get('photos')
+        ) {
             try {
                 $project = Project::create(array(
                     'name' => Input::get('name'),
                     'githubUrl' => Input::get('githubUrl'),
                     'description' => Input::get('description')
                 ));
-            } catch (\Exception $e){
+            } catch (\Exception $e) {
                 return Response::json([
                     'message' => 'Project with that name or githubUrl already exist.'
                 ], 200);
@@ -69,11 +76,11 @@ class ProjectsController extends Controller
         }
 
         $photos = json_decode(Input::get('photos'));
-        foreach($photos as $photoUrl){
+        foreach ($photos as $photoUrl) {
             self::addPhotoToProject($project->id, $photoUrl);
         }
 
-        foreach($users as $userEmail){
+        foreach ($users as $userEmail) {
             self::addUserToProject($userEmail, $project->id);
         }
 
@@ -86,7 +93,7 @@ class ProjectsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -104,36 +111,42 @@ class ProjectsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update($id)
     {
+        if (!Auth::check()) {
+            return Response::json([
+                'message' => 'Unauthorized access'
+            ], 401);
+        }
+
         $project = Project::find($id);
         if (!$project) {
             return Response::json([
                 'message' => 'Project not found',
             ], 404);
         }
-        if(Input::get('name')){
+        if (Input::get('name')) {
             $project->name = Input::get('name');
         }
-        if(Input::get('githubUrl')){
+        if (Input::get('githubUrl')) {
             $project->githubUrl = Input::get('githubUrl');
         }
-        if(Input::get('description')){
+        if (Input::get('description')) {
             $project->description = Input::get('description');
         }
 
-        if(Input::get('photos')){
+        if (Input::get('photos')) {
             $photos = json_decode(Input::get('photos'));
-            foreach($photos as $photoUrl){
+            foreach ($photos as $photoUrl) {
                 self::addPhotoToProject($project->id, $photoUrl);
             }
         }
 
-        if(Input::get('users')) {
+        if (Input::get('users')) {
             $users = json_decode(Input::get('users'));
             foreach ($users as $userEmail) {
                 self::addUserToProject($userEmail, $project->id);
@@ -151,11 +164,16 @@ class ProjectsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
+        if (!Auth::check()) {
+            return Response::json([
+                'message' => 'Unauthorized access'
+            ], 401);
+        }
         $project = Project::with('users', 'photos')->find($id);
         if (!$project) {
             return Response::json([
@@ -163,7 +181,7 @@ class ProjectsController extends Controller
             ], 404);
         }
         $photos = $project->photos;
-        foreach($photos as $photo){
+        foreach ($photos as $photo) {
             Photo::destroy($photo->id);
         }
         $project->users()->detach();
@@ -175,7 +193,8 @@ class ProjectsController extends Controller
         ], 200);
     }
 
-    private static function addPhotoToProject($projectId, $photoUrl) {
+    private static function addPhotoToProject($projectId, $photoUrl)
+    {
         \Eloquent::unguard();
         Photo::create(array(
             'project_id' => $projectId,
@@ -183,12 +202,13 @@ class ProjectsController extends Controller
         ));
     }
 
-    private static function addUserToProject($userEmail, $projectId) {
+    private static function addUserToProject($userEmail, $projectId)
+    {
         \Eloquent::unguard();
         $user = \DB::table('users')->where('email', '=', $userEmail)->first();
-            \DB::table('user_project')->insert([
-                'project_id' => $projectId,
-                'user_id' => $user->id
-            ]);
+        \DB::table('user_project')->insert([
+            'project_id' => $projectId,
+            'user_id' => $user->id
+        ]);
     }
 }

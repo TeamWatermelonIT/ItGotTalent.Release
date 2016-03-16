@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
-use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
@@ -62,17 +62,6 @@ class UsersController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
@@ -81,6 +70,11 @@ class UsersController extends Controller
      */
     public function update($id)
     {
+        if (!(Auth::check() && Auth::user()->id == $id)) {
+            return Response::json([
+                'message' => 'Unauthorized access'
+            ], 401);
+        }
         $user = User::find($id);
         if (!$user) {
             return Response::json([
@@ -113,6 +107,11 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
+        if (!(Auth::check() && Auth::user()->id == $id)) {
+            return Response::json([
+                'message' => 'Unauthorized access'
+            ], 401);
+        }
         $user = User::find($id);
         $user->projects()->detach();
         User::destroy($id);
