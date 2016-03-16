@@ -6,7 +6,6 @@ use App\Project;
 use App\Photo;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
-use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
 {
@@ -34,20 +33,46 @@ class ProjectsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        $project = Project::create(array(
-            'name' => $request->input('name'),
-            'githubUrl' => $request->input('githubUrl'),
-            'description' => $request->input('description')
-        ))->get()->first();
+        \Eloquent::unguard();
 
-        $photos = $request->input('photos');
+        $users = json_decode(Input::get('users'));
+        foreach($users as $userEmail){
+            $user = \DB::table('users')->where('email', '=', $userEmail)->first();
+            if(!$user){
+                return Response::json([
+                    'message' => 'Invalid user',
+                    'email' => $userEmail
+                ], 400);
+            }
+        }
+
+        if(Input::get('name') && Input::get('githubUrl') && Input::get('description')
+            && Input::get('photos')) {
+            try {
+                $project = Project::create(array(
+                    'name' => Input::get('name'),
+                    'githubUrl' => Input::get('githubUrl'),
+                    'description' => Input::get('description')
+                ));
+            } catch (\Exception $e){
+                return Response::json([
+                    'message' => 'Project with that name or githubUrl already exist.'
+                ], 200);
+            }
+
+        } else {
+            return Response::json([
+                'message' => 'Not enought parameters. Name, githubUrl, description, photos and users.',
+            ], 400);
+        }
+
+        $photos = json_decode(Input::get('photos'));
         foreach($photos as $photoUrl){
             self::addPhotoToProject($project->id, $photoUrl);
         }
 
-        $users = $request->input('users');
         foreach($users as $userEmail){
             self::addUserToProject($userEmail, $project->id);
         }
@@ -83,7 +108,7 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
         $project = Project::find($id);
         if (!$project) {
@@ -91,25 +116,31 @@ class ProjectsController extends Controller
                 'message' => 'Project not found',
             ], 404);
         }
-        if($request->input('name')){
-            $project->name = $request->input('name');
+        if(Input::get('name')){
+            $project->name = Input::get('name');
         }
-        if($request->input('githubUrl')){
-            $project->githubUrl = $request->input('githubUrl');
+        if(Input::get('githubUrl')){
+            $project->githubUrl = Input::get('githubUrl');
         }
-        if($request->input('description')){
-            $project->description = $request->input('githubUrl');
-        }
-
-        $photos = $request->input('photos');
-        foreach($photos as $photoUrl){
-            self::addPhotoToProject($project->id, $photoUrl);
+        if(Input::get('description')){
+            $project->description = Input::get('description');
         }
 
-        $users = $request->input('users');
-        foreach($users as $userEmail){
-            self::addUserToProject($userEmail, $project->id);
+        if(Input::get('photos')){
+            $photos = json_decode(Input::get('photos'));
+            foreach($photos as $photoUrl){
+                self::addPhotoToProject($project->id, $photoUrl);
+            }
         }
+
+        if(Input::get('users')) {
+            $users = json_decode(Input::get('users'));
+            foreach ($users as $userEmail) {
+                self::addUserToProject($userEmail, $project->id);
+            }
+        }
+
+        $project->save();
 
         return Response::json([
             'message' => 'Project updated',
@@ -125,13 +156,16 @@ class ProjectsController extends Controller
      */
     public function destroy($id)
     {
-        $project = Project::find($id);
+        $project = Project::with('users', 'photos')->find($id);
         if (!$project) {
             return Response::json([
                 'message' => 'Project not found',
             ], 404);
         }
-        $project->photos()->detach();
+        $photos = $project->photos;
+        foreach($photos as $photo){
+            Photo::destroy($photo->id);
+        }
         $project->users()->detach();
         Project::destroy($id);
 
@@ -142,6 +176,7 @@ class ProjectsController extends Controller
     }
 
     private static function addPhotoToProject($projectId, $photoUrl) {
+        \Eloquent::unguard();
         Photo::create(array(
             'project_id' => $projectId,
             'photoUrl' => $photoUrl
@@ -149,10 +184,11 @@ class ProjectsController extends Controller
     }
 
     private static function addUserToProject($userEmail, $projectId) {
-        $userId = \DB::table('users')->where('email', '=', $userEmail)->get()->first()->id;
-        \DB::table('user_project')->insert([
-            'project_id' => $projectId,
-            'user_id' => $userId
-        ]);
+        \Eloquent::unguard();
+        $user = \DB::table('users')->where('email', '=', $userEmail)->first();
+            \DB::table('user_project')->insert([
+                'project_id' => $projectId,
+                'user_id' => $user->id
+            ]);
     }
 }

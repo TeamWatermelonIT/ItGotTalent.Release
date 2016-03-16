@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\Http\Requests;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        //$this->middleware('auth:api');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -74,23 +79,26 @@ class UsersController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
         $user = User::find($id);
         if (!$user) {
             return Response::json([
-                'message' => 'Project not found',
+                'message' => 'Student not found',
             ], 404);
         }
-        if ($request->input('name')) {
-            $user->name = $request->input('name');
+
+        if (Input::get('name')) {
+            $user->name = Input::get('name');
         }
-        if ($request->input('email')) {
-            $user->email = $request->input('email');
+        if (Input::get('email')) {
+            $user->email = Input::get('email');
         }
-        if ($request->input('photoUrl')) {
-            $user->photoUrl = $request->input('photoUrl');
+        if (Input::get('photoUrl')) {
+            $user->photoUrl = Input::get('photoUrl');
         }
+
+        $user->save();
 
         return Response::json([
             'message' => 'User updated',

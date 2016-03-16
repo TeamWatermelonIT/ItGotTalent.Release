@@ -36,8 +36,8 @@ Route::group(
         Route::get('logout', 'Auth\AuthController@logout');
         Route::post('register', 'Auth\AuthController@register');
 
-        Route::put('profile/{id}', 'UsersController@show');
-        Route::delete('profile/{id}', 'UsersController@destroy');
+        Route::put('students/{id}', 'UsersController@update');
+        Route::delete('students/{id}', 'UsersController@destroy');
 
         Route::get('students', 'UsersController@index');
         Route::get('students/{id}', 'UsersController@show');
@@ -49,5 +49,3 @@ Route::group(
         Route::delete('projects/{id}', 'ProjectsController@destroy');
     }
 );
-
-

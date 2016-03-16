@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Contracts\Validation\Validator;
 
 class AuthController extends Controller
 {
@@ -32,6 +32,8 @@ class AuthController extends Controller
      * @var string
      */
     protected $redirectTo = '/';
+
+    protected $guard = 'api';
 
     /**
      * Create a new authentication controller instance.
