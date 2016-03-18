@@ -1,9 +1,4 @@
-app.factory('service_students',function($resource ,baseUrl, $http, $log){
-
-    console.log('service-students is ready');
-
-
-
+app.factory('service_students',function($resource ,baseUrl, $http){
     return{
         getStudentsByPage: function(page, successCB){
             $http.get(baseUrl + '/students?page=' + page)
@@ -43,9 +38,7 @@ app.factory('service_students',function($resource ,baseUrl, $http, $log){
                 })
 
         }
-
-
-    };
+     };
 
 });
 

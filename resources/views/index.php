@@ -1,6 +1,6 @@
 <?php
 ?>
-<html ng-app="app">
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,21 +26,11 @@
 
 
 </head>
-<body ng-app="app">
+<body ng-app="myApp" ng-cloak>
 <div class="container-fluid">
     <div class="container">
-        <div class="row navbar">
-            <div class="col-lg-3 col-md-3 logo"><a href="#/home">
-                    <img src="/app/images/it-talents-logo1.png" alt=""></a></div>
-            <div class="col-lg-1 col-md-1 nav green" id="active"><a href="#/home">
-                    <img src="/app/images/home-5-xxl.png" alt=""></a></div>
-            <div class="col-lg-1 col-md-1 nav yellow animate" ><a href="#/students">
-                    <img src="/app/images/student.png"></a></div>
-            <div class="col-lg-1 col-md-1 nav orange animate"><a href="#/projects">
-                    <img src="/app/images/project.png" alt=""></a></div>
-            <div class="col-lg-1 col-md-1 nav pink animate"><a href="#/register">
-                    <img src="/app/images/login.png" alt=""></a></div>
-        </div>
+
+
         <ng-view>
 
         </ng-view>
@@ -67,19 +57,26 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular-route.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular-cookies.min.js"></script>
 <script src="/app/js/app.js"></script>
-<script src="/app/js/students/ctrl-students.js"></script>
+
+<script src="/app/js/identity/auth.js"></script>
+<script src="/app/js/identity/authorization-service.js"></script>
+<script src="/app/js/identity/identity-service.js"></script>
+<script src="/app/js/identity/login-controller.js"></script>
+<script src="/app/js/identity/registration-controller.js"></script>
+
+<script src="/app/js/home/ctrl-home.js"></script>
+
 <script src="/app/js/students/ctrl-students-details.js"></script>
-<script src="/app/js/projects/ctrl-projects.js"></script>
-<script src="/app/js/projects/ctrl-projects-details.js"></script>
-<script src="/app/js/register/ctrl-register.js"></script>
+<script src="/app/js/students/ctrl-students.js"></script>
 <script src="/app/js/students/service-student.js"></script>
 <script src="/app/js/students/service-students-details.js"></script>
-<script src="/app/js/register/service-regLoginLogout.js"></script>
-<script src="/app/js/register/service-authentication.js"></script>
-<script src="/app/js/projects/service-projects.js"></script>
-<script src="/app/js/home/ctrl-home.js"></script>
 <script src="/app/js/students/ctrl-students-edit.js"></script>
-<script src="/app/js/projects/ctrl-projects-add.js"></script>
+<script src="/app/js/students/ctrl-students-details.js"></script>
+
+<script src="/app/js/projects/projects-service.js"></script>
+<script src="/app/js/projects/projects-controller.js"></script>
+<script src="/app/js/projects/projects-create-controller.js"></script>
+<script src="/app/js/projects/projects-details-controller.js"></script>
 
 <script type="text/javascript">
     var klasses = ["bounce", "pulse", "swing", "rubberBand", "tada", "wobble", "jello", "rotateIn"];

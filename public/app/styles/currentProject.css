@@ -140,3 +140,8 @@ ul li img {
         margin-left: 10px;
     }
 }
+
+.list-group-item {
+    background-color: transparent;
+    border: none;
+}

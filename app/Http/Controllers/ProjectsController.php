@@ -23,7 +23,7 @@ class ProjectsController extends Controller
         if ($name != null) {
             $query->where('name', 'LIKE', "%$name%");
         }
-        $projects = $query->paginate(10);
+        $projects = $query->paginate(12);
 
         return Response::json($projects->all());
     }

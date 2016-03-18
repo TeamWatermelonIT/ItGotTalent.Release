@@ -1,60 +1,33 @@
-<!--<form role="form" name="addProjectForm" class="col-lg-6" >-->
+<div class="row navbar">
+    <div class="col-lg-3 col-md-3 logo animate"><a href="#/home">
+        <img src="/app/images/it-talents-logo1.png" alt=""></a></div>
+    <div class="col-lg-1 col-md-1 nav blueNav animate" ><a href="#/home">
+        <img src="/app/images/home-5-xxl.png" alt=""></a></div>
+    <div class="col-lg-1 col-md-1 nav yellow animate" ><a href="#/students">
+        <img src="/app/images/student.png"></a></div>
+    <div class="col-lg-1 col-md-1 nav orange animate"><a href="#/projects">
+        <img src="/app/images/project.png" alt=""></a></div>
+    <div ng-controller="LoginController">
+        <div class="col-lg-1 col-md-1 nav green animate" ng-hide="identity.isAuthenticated()">
+            <a href="#/register">
+                <img src="/app/images/login.png" alt=""></a>
+        </div>
 
-<!--<div class="form-group ">-->
-<!--<label>name</label>-->
-<!--<input type="text" name="name"-->
-<!--class="form-control"-->
-<!--placeholder="name"-->
-<!--ng-model="student.name">-->
-<!--</div>-->
-<!--<div class="form-group ">-->
-<!--<label>email</label>-->
-<!--<input type="text" name=""-->
-<!--class="form-control"-->
-<!--placeholder="githubUrl"-->
-<!--ng-model="student.email">-->
-<!--</div>-->
-<!--<div class="form-group ">-->
-<!--<label>photoUrl</label>-->
-<!--<input type="text" name=""-->
-<!--class="form-control"-->
-<!--placeholder="photoUrl"-->
-<!--ng-model="student.photoUrl">-->
-<!--</div>-->
-
-
-<!--<button data-ng-click="editStudent(student)">EDIT</button>-->
-<!--</form>-->
-
-
-
-
+        <div  class="col-lg-1 col-md-1 nav pink animate"
+              ng-show="identity.isAuthenticated()">
+            <a href='#' ng-click="logout()">
+                <img src="/app/images/login.png" alt=""></a>
+            </a>
+        </div>
+    </div>
+</div>
 <div class="row user">
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 photoAndActions">
-        <div class="row">
+        <div class="row" ng-controller="ctrl-students-edit">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 photo">
-                <img src="/app/images/user1.png" alt="">
+                <img ng-src="{{student.photoUrl}}" alt="student photo" style="width:300px; height:300px;">
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <div ng-controller="ctrl-students-edit"
+            <div
                  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="edit animate"
                      data-toggle="modal"
@@ -85,7 +58,7 @@
                                 <form class="form-horizontal" role="form">
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label"
-                                               for="studentName" >Name</label>
+                                               for="studentName">Name</label>
                                         <div class="col-sm-10">
                                             <input type="text"
                                                    class="form-control"
@@ -95,8 +68,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label  class="col-sm-2 control-label"
-                                                for="inputEmail3">New email</label>
+                                        <label class="col-sm-2 control-label"
+                                               for="inputEmail3">New email</label>
                                         <div class="col-sm-10">
                                             <input type="email"
                                                    class="form-control"
@@ -107,7 +80,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label"
-                                               for="oldPassword" >Old password</label>
+                                               for="oldPassword">Old password</label>
                                         <div class="col-sm-10">
                                             <input type="password"
                                                    class="form-control"
@@ -117,7 +90,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label"
-                                               for="newPassword" >New password</label>
+                                               for="newPassword">New password</label>
                                         <div class="col-sm-10">
                                             <input type="password"
                                                    class="form-control"
@@ -127,7 +100,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label"
-                                               for="repeatPassword" >Repeat new password</label>
+                                               for="repeatPassword">Repeat new password</label>
                                         <div class="col-sm-10">
                                             <input type="password"
                                                    class="form-control"
@@ -137,8 +110,8 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label  class="col-sm-2 control-label"
-                                                for="uploadPhoto">Change photo</label>
+                                        <label class="col-sm-2 control-label"
+                                               for="uploadPhoto">Change photo</label>
                                         <div class="col-sm-10">
                                             <input type="url"
                                                    class="form-control"
@@ -170,28 +143,10 @@
             </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             <!-- ADD PROJECT -->
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-                 ng-controller="ctrl-project-add">
+                 ng-controller="CreateProjectController">
                 <div class="edit animate" data-toggle="modal" data-target="#myModalHorizontal1">
                     <img src="/app/images/upload.png" alt="">
                     <p>Upload project</p>
@@ -219,8 +174,8 @@
                                 <form class="form-horizontal"
                                       role="form">
                                     <div class="form-group">
-                                        <label  class="col-sm-2 control-label"
-                                                for="source">Source code url</label>
+                                        <label class="col-sm-2 control-label"
+                                               for="source">Source code url</label>
                                         <div class="col-sm-10">
                                             <input type="url"
                                                    class="form-control"
@@ -231,7 +186,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label"
-                                               for="projectName" >Project name</label>
+                                               for="projectName">Project name</label>
                                         <div class="col-sm-10">
                                             <input type="text"
                                                    class="form-control"
@@ -242,7 +197,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label"
-                                               for="projectAuthors" >Project authors</label>
+                                               for="projectAuthors">Project authors</label>
                                         <div class="col-sm-10">
                                             <input type="text"
                                                    class="form-control"
@@ -253,7 +208,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label"
-                                               for="projectDescription" >Project description</label>
+                                               for="projectDescription">Project description</label>
                                         <div class="col-sm-10">
                                             <input type="text"
                                                    class="form-control"
@@ -264,7 +219,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label"
-                                               for="projectDescription" >Project photo url</label>
+                                               for="projectDescription">Project photo url</label>
                                         <div class="col-sm-10">
                                             <input type="url"
                                                    class="form-control"
@@ -301,7 +256,6 @@
     </div>
 
 
-
     <div ng-controller="ctrl-students-details"
          class="col-lg-8 col-md-8 col-sm-12 col-xs-12 currentDescription">
         <div class="currentDescriptionContainer">
@@ -313,10 +267,10 @@
             <p>{{student.dateOfBirth}}</p>
             <h1>IT Talents Season </h1>
             <p>{{student.season}}</p>
-            <h1>Course(s)  </h1>
+            <h1>Course(s) </h1>
             <p>{{student.course}}</p>
             <h1>Projects</h1>
-            <ul class="list-group-item" >
+            <ul class="list-group-item">
                 <li ng-repeat="project in student.projects">
                     <a href="#/projects/{{project.id}}">{{project.name}}</a>
                 </li>
@@ -324,3 +278,4 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="/app/js/animations.js"></script>

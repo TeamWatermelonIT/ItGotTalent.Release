@@ -1,3 +1,26 @@
+<div class="row navbar">
+    <div class="col-lg-3 col-md-3 logo animate"><a href="#/home">
+        <img src="/app/images/it-talents-logo1.png" alt=""></a></div>
+    <div class="col-lg-1 col-md-1 nav blueNav animate" ><a href="#/home">
+        <img src="/app/images/home-5-xxl.png" alt=""></a></div>
+    <div class="col-lg-1 col-md-1 nav yellow animate" ><a href="#/students">
+        <img src="/app/images/student.png"></a></div>
+    <div class="col-lg-1 col-md-1 nav orange animate"><a href="#/projects">
+        <img src="/app/images/project.png" alt=""></a></div>
+    <div ng-controller="LoginController">
+        <div class="col-lg-1 col-md-1 nav green animate" ng-hide="identity.isAuthenticated()">
+            <a href="#/register">
+                <img src="/app/images/login.png" alt=""></a>
+        </div>
+
+        <div  class="col-lg-1 col-md-1 nav pink animate"
+              ng-show="identity.isAuthenticated()">
+            <a href='#' ng-click="logout()">
+                <img src="/app/images/login.png" alt=""></a>
+            </a>
+        </div>
+    </div>
+</div>
 <div class="projectReview">
     <div class="row projectName">
         <h1>{{project.name}}</h1>
@@ -5,41 +28,8 @@
         <br>
     </div>
     <ul class="row">
-        <li class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
-            <img class="img-responsive animate" src="/app/images/random-colors.jpg">
-        </li>
-        <li class="col-lg-3 col-md-4 col-sm-4 col-xs-4">
-            <img class="img-responsive animate" src="/app/images/random-colors.jpg">
-        </li>
-        <li class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
-            <img class="img-responsive animate" src="/app/images/random-colors.jpg">
-        </li>
-        <li class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
-            <img class="img-responsive animate" src="/app/images/random-colors.jpg">
-        </li>
-        <li class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
-            <img class="img-responsive animate" src="/app/images/random-colors.jpg">
-        </li>
-        <li class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
-            <img class="img-responsive animate" src="/app/images/random-colors.jpg">
-        </li>
-        <li class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
-            <img class="img-responsive animate" src="/app/images/random-colors.jpg">
-        </li>
-        <li class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
-            <img class="img-responsive animate" src="/app/images/random-colors.jpg">
-        </li>
-        <li class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
-            <img class="img-responsive animate" src="/app/images/random-colors.jpg">
-        </li>
-        <li class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
-            <img class="img-responsive animate" src="/app/images/random-colors.jpg">
-        </li>
-        <li class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
-            <img class="img-responsive animate" src="/app/images/random-colors.jpg">
-        </li>
-        <li class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
-            <img class="img-responsive animate" src="/app/images/random-colors.jpg">
+        <li class="col-lg-3 col-md-3 col-sm-4 col-xs-4" ng-repeat="photo in project.photos">
+            <img class="img-responsive animate" src="{{photo['photoUrl']}}" style="width:300px; height: 300px;">
         </li>
     </ul>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -56,3 +46,4 @@
         <p><h3>IT Talents season :</h3>Some Season</p>
 </div>
 </div>
+<script type="text/javascript" src="/app/js/animations.js"></script>

@@ -1,10 +1,7 @@
-app.controller('ctrl-students-details',function($scope,$routeParams,service_student_details){
-
-    console.log('ctrl-students-details is ready ! ! !');
-
+app.controller('ctrl-students-details', ['$scope', '$routeParams', 'service_student_details',
+    function($scope,$routeParams,service_student_details){
 
     service_student_details.getStudent($routeParams.id).$promise.then(function(data){
-        console.log(data);
         $scope.student = data;
         var monthNames = [
              "January", "February", "March",
@@ -21,16 +18,10 @@ app.controller('ctrl-students-details',function($scope,$routeParams,service_stud
          $scope.student.dateOfBirth = day + ' ' + monthNames[monthIndex] + ' ' + year;
     });
 
-
-
     $scope.showProjects = false;
     $scope.text = 'Show';
 
     $scope.showMyProjects = showMyProjects;
-
-
-
-
     function showMyProjects(){
 
         if(!$scope.showProjects){
@@ -41,5 +32,4 @@ app.controller('ctrl-students-details',function($scope,$routeParams,service_stud
             $scope.showProjects = false
         }
     }
-
-});
+}]);

@@ -1,48 +1,40 @@
-var app = angular.module('app',['ngRoute','ngResource', 'ngCookies']);
+var CONTROLLER_VIEW_MODEL_NAME = 'vm',
+    PARTIALS_PREFIX = '/app/views';
 
-app.constant('baseUrl', '/api');
-
-app.config(function($routeProvider){
+function config($routeProvider){
     $routeProvider.when('/home', {
-        templateUrl: '/app/views/home/view-home.html',
+        templateUrl: PARTIALS_PREFIX + '/home/view-home.html',
         controller : 'ctrl-home'
-    });
-    $routeProvider.when('/', {
-        templateUrl: 'app/views/home/view-home.html',
-        controller : 'ctrl-home'
-    });
-    $routeProvider.when('/students', {
-        templateUrl: '/app/views/students/view-students.html',
+    }).when('/students', {
+        templateUrl: PARTIALS_PREFIX + '/students/view-students.html',
         controller : 'ctrl-students'
-    });
-
-    $routeProvider.when('/students/:id', {
-        templateUrl: '/app/views/students/view-student-details.html',
+    }).when('/students/:id', {
+        templateUrl: PARTIALS_PREFIX + '/students/view-student-details.html',
         controller : 'ctrl-students-details'
-    });
-
-    $routeProvider.when('/students/:id/edit', {
-        templateUrl: '/app/views/students/view-edit-student.html',
+    }).when('/students/:id/edit', {
+        templateUrl: PARTIALS_PREFIX + '/students/view-edit-student.html',
         controller : 'ctrl-students-edit'
-    });
-
-    $routeProvider.when('/projects', {
-        templateUrl: '/app/views/projects/view-projects.html',
-        controller : 'ctrl-projects'
-    });
-    $routeProvider.when('/projects/:id', {
-        templateUrl: '/app/views/projects/view-projects-details.html',
-        controller : 'ctrl-project'
-    });
-    $routeProvider.when('/register', {
-            templateUrl: '/app/views/register/view-register-01.html',
-            controller : 'ctrl-register'
-    });
-    $routeProvider.when('/addProject', {
-        templateUrl: '/app/views/projects/view-add-project.html',
+    }).when('/projects', {
+        templateUrl: PARTIALS_PREFIX + '/projects/view-projects.html',
+        controller : 'ProjectsController'
+    }).when('/projects/:id', {
+        templateUrl: PARTIALS_PREFIX + '/projects/view-projects-details.html',
+        controller : 'ProjectDetailsController'
+    }).when('/addProject', {
+        templateUrl: PARTIALS_PREFIX +'/projects/view-add-project.html',
         controller : 'ctrl-project-edit'
-    });
+    }).when('/register', {
+            templateUrl: PARTIALS_PREFIX + '/identity/view-register.html',
+            controller: 'RegistrationController',
+            controllerAs: CONTROLLER_VIEW_MODEL_NAME
+    }).otherwise({redirectTo: '/home'});
+}
 
-        //.otherwise({redirectTo: '/home'})
+var app = angular.module('myApp',['ngRoute','ngResource', 'ngCookies']);
+app.constant('baseUrl', '/api');
+app.config(['$routeProvider', config]);
 
-});
+//angular.module('myApp.filters', []);
+//angular.module('myApp.services', []);
+//angular.module('myApp.directives', []);
+//angular.module('myApp.controllers', ['myApp.services']);

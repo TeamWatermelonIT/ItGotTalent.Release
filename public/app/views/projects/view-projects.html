@@ -1,14 +1,43 @@
+<div class="row navbar">
+    <div class="col-lg-3 col-md-3 logo animate"><a href="#/home">
+        <img src="/app/images/it-talents-logo1.png" alt=""></a></div>
+    <div class="col-lg-1 col-md-1 nav blueNav animate" ><a href="#/home">
+        <img src="/app/images/home-5-xxl.png" alt=""></a></div>
+    <div class="col-lg-1 col-md-1 nav yellow animate" ><a href="#/students">
+        <img src="/app/images/student.png"></a></div>
+    <div class="col-lg-1 col-md-1 nav orange" id="active"><a href="#/projects">
+        <img src="/app/images/project.png" alt=""></a></div>
+    <div ng-controller="LoginController">
+        <div class="col-lg-1 col-md-1 nav green animate" ng-hide="identity.isAuthenticated()">
+            <a href="#/register">
+                <img src="/app/images/login.png" alt=""></a>
+        </div>
+
+        <div  class="col-lg-1 col-md-1 nav pink animate"
+              ng-show="identity.isAuthenticated()">
+            <a href='#' ng-click="logout()">
+                <img src="/app/images/login.png" alt=""></a>
+            </a>
+        </div>
+    </div>
+</div>
 <div class="row projects-info">
     <div class="col-lg-12 col-md-12 col-xs-12">
         <h1>We are glad to present you our students` projects</h1>
-        <hr id="hrOne">
-        <hr id="hrTwo">
+        <img src="/app/images/divider-white.png" alt="">
     </div>
 </div>
 <div class="allProjects">
     <div class="row projects">
         <div class="col-lg-3 col-md-3 col-xs-6 " ng-repeat="project1 in arr1">
-            <img class="img-responsive green-border" src="/app/images/project.jpg">
+            <div ng-show="{{project1.photos[0]}}">
+                <img class="img-responsive green-border" ng-src="{{project1.photos[0]['photoUrl']}}"
+                     style="width:263px; height: 200px;">
+            </div>
+            <div ng-hide="{{project1.photos[0]}}">
+                <img class="img-responsive green-border" src="/app/images/project.jpg"
+                     style="width:263px; height: 200px;">
+            </div>
             <div class="green">
                 <p><b>Authors:</b> <a href="">John Doe</a>,
                     <a href="">Jane Doe</a><br>
@@ -20,7 +49,14 @@
     </div>
     <div class="row projects">
         <div class="col-lg-3 col-md-3 col-xs-6 " ng-repeat="project2 in arr2">
-            <img class="img-responsive green-border" src="/app/images/project.jpg">
+            <div ng-show="{{project1.photos[0]}}">
+                <img class="img-responsive green-border" ng-src="{{project2.photos[0]['photoUrl']}}"
+                     style="width:263px; height: 200px;">
+            </div>
+            <div ng-hide="{{project1.photos[0]}}">
+                <img class="img-responsive green-border" src="/app/images/project.jpg"
+                     style="width:263px; height: 200px;">
+            </div>
             <div class="green">
                 <p><b>Authors:</b>
                     <a href="">John Doe</a>,
@@ -33,7 +69,14 @@
     </div>
     <div class="row projects">
         <div class="col-lg-3 col-md-3 col-xs-6 " ng-repeat="project3 in arr3">
-            <img class="img-responsive green-border" src="/app/images/project.jpg">
+            <div ng-show="{{project1.photos[0]}}">
+                <img class="img-responsive green-border" ng-src="{{project3.photos[0]['photoUrl']}}"
+                     style="width:263px; height: 200px;">
+            </div>
+            <div ng-hide="{{project1.photos[0]}}">
+                <img class="img-responsive green-border" src="/app/images/project.jpg"
+                     style="width:263px; height: 200px;">
+            </div>
             <div class="green">
                 <p><b>Authors:</b> <a href="">John Doe</a>,
                     <a href="">Jane Doe</a><br>
@@ -54,3 +97,4 @@
         </ul>
     </div>
 </div>
+<script type="text/javascript" src="/app/js/animations.js"></script>

@@ -1,7 +1,4 @@
-app.controller('ctrl-students',function($scope, $routeParams,service_students, $log){
-
-    console.log('ctrl-students is ready !!!');
-
+app.controller('ctrl-students',function($scope, $routeParams,service_students){
     $scope.season;
     $scope.course;
     $scope.page=0;
@@ -25,7 +22,6 @@ app.controller('ctrl-students',function($scope, $routeParams,service_students, $
             });
         }
         else if(typeof($scope.course) !== "undefined"){
-            //search by coursse
             service_students.getStudentsByPageCourse($scope.page,$scope.course, function(data){
                 if(data.data.length > 0){
                     $scope.noMorePages = false;
@@ -40,7 +36,6 @@ app.controller('ctrl-students',function($scope, $routeParams,service_students, $
             });
         }
         else if(typeof($scope.season) !== "undefined"){
-            //search by season
             service_students.getStudentsByPageSeason($scope.page,$scope.season, function(data){
                 if(data.data.length > 0){
                     $scope.noMorePages = false;
@@ -53,7 +48,6 @@ app.controller('ctrl-students',function($scope, $routeParams,service_students, $
                 $scope.flag2 = false;
             });
         }else{
-            //random search
             service_students.getStudentsByPage($scope.page, function(data){
                 if(data.data.length > 0){
                     $scope.noMorePages = false;
@@ -70,13 +64,10 @@ app.controller('ctrl-students',function($scope, $routeParams,service_students, $
     };
     $scope.searchStudents();
 
-
-
     $scope.next = function(){
         $scope.flag2 = true;
         if(!$scope.noMorePages){
             $scope.page++;
-            console.log($scope.page);
             $scope.searchStudents();
         }
     };
@@ -85,13 +76,9 @@ app.controller('ctrl-students',function($scope, $routeParams,service_students, $
         $scope.flag1 = true;
         if($scope.page > 0){
             $scope.page--;
-            console.log($scope.page);
             $scope.searchStudents();
         }
     };
-
-
-
 });
 
 
